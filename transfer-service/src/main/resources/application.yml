@@ -1,6 +1,17 @@
 spring:
   application:
     name: transfer-service
+  datasource:
+    driverClassName: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:system/oracle@10.243.136.57:1521:Eversbox
+    username: DDL_INDUCTION
+    password: DDL_INDUCTION
+
+  jpa:
+    properties:
+      hibernate.dialect: org.hibernate.dialect.Oracle12cDialect
+    hibernate:
+      ddl-auto: none
 
 server:
   port: 8071

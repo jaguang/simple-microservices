@@ -1,6 +1,17 @@
 spring:
   application:
     name: verification-service
+  datasource:
+    driverClassName: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:system/oracle@10.243.136.57:1521:Eversbox
+    username: DDL_INDUCTION
+    password: DDL_INDUCTION
+
+  jpa:
+    properties:
+      hibernate.dialect: org.hibernate.dialect.Oracle12cDialect
+    hibernate:
+      ddl-auto: none
 
 server:
   port: 8072
@@ -13,11 +24,3 @@ eureka:
       defaultZone: http://localhost:8070/eureka/
   instance:
     hostname: localhost
-
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 60000
