@@ -1,0 +1,234 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/casa-estatement-service",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/casa-estatement/v1/account/inquiry": {
+      "post": {
+        "tags": [
+          "Casa Estatement Service"
+        ],
+        "summary": "Post Account Inquiry",
+        "description": "This Casa Estatement API is used to do Inquiry to IRIS for generated PDF.\n####Dependencies:\n1. Token used as authorization in header parameter, using this API:\nidentity-service/identity/v1/login\n[Reference](https://10.243.215.166:8443/pages/viewpage.action?pageId=216401274)",
+        "operationId": "postAccountInquiry",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostAccountInquiryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success inquiry to IRIS",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAccountInquiryResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Http Status = 409 Catch-all scenario when return not 200\nStatus Code = 30981 No Attachment Found\nStatus Code = 30984 Transaction Not Found\nStatus Code = 30985 Document is Too Large to Generate\nStatus Code = 30986 Invalid Request\nStatus Code = 30988 Document Not Available in Documentum",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAccountInquiryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/casa-estatement/v1/account/download": {
+      "post": {
+        "tags": [
+          "Casa Estatement Service"
+        ],
+        "summary": "Post Account Statement Download",
+        "operationId": "postAccountStatementDownload",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostAccountDownloadRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success Account Statement Status",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Http Status = 409 Catch-all scenario when return not 200.\nStatus Code = 30982 Document Failed to Generate.\nStatus Code = 30981 No Attachment Found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/casa-estatement/v1/statement-dates": {
+      "get": {
+        "tags": [
+          "Casa Estatement Service"
+        ],
+        "summary": "Get List of Estatement Dates",
+        "description": "This Casa Estatement API is used to get all estatement request dates which consists of the start date and end date of every month in requested time period.\n####Dependencies:\n1. Token used as authorization in header parameter, using this API:\nidentity-service/identity/v1/login\n[Reference](https://10.243.215.166:8443/pages/viewpage.action?pageId=212914752)",
+        "operationId": "getStatementDates",
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success retrieve list of statement dates",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStatementDatesResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Http Status = 409 Catch-all scenario when return not 200\nStatus Code = 30983 Account is denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStatementDatesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PostAccountInquiryRequest": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "description": "Request ID"
+          },
+          "accountNumber": {
+            "type": "string",
+            "description": "Account Number"
+          },
+          "requestStartDate": {
+            "type": "string",
+            "description": "Request Start Date"
+          },
+          "requestEndDate": {
+            "type": "string",
+            "description": "Request End Date"
+          },
+          "fileType": {
+            "type": "string",
+            "description": "File Type"
+          }
+        },
+        "description": "Post Account Inquiry Request"
+      },
+      "PostAccountInquiryResponse": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "description": "Request ID"
+          },
+          "generatedStatus": {
+            "type": "string",
+            "description": "Generated Status"
+          }
+        },
+        "description": "Post Account Inquiry Response"
+      },
+      "PostAccountDownloadRequest": {
+        "required": [
+          "requestId"
+        ],
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "description": "Request Id"
+          }
+        }
+      },
+      "GetStatementDatesResponse": {
+        "type": "object",
+        "properties": {
+          "groupedStatements": {
+            "type": "array",
+            "description": "Grouped Statement List",
+            "items": {
+              "$ref": "#/components/schemas/GroupedStatement"
+            }
+          }
+        },
+        "description": "Get Statement Dates Response"
+      },
+      "GroupedStatement": {
+        "type": "object",
+        "properties": {
+          "year": {
+            "type": "integer",
+            "description": "Year",
+            "format": "int32"
+          },
+          "statementDates": {
+            "type": "array",
+            "description": "List of Statement Dates",
+            "items": {
+              "type": "array",
+              "description": "List of Statement Dates",
+              "items": {
+                "type": "string",
+                "description": "List of Statement Dates"
+              }
+            }
+          }
+        },
+        "description": "Grouped Statement"
+      }
+    }
+  }
+}
