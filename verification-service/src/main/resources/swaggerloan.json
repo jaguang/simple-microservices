@@ -1,0 +1,7187 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/loan-service",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/loan/v1/topup/offer": {
+      "put": {
+        "tags": [
+          "topup-controller"
+        ],
+        "summary": "Accept or decline the loan topup application",
+        "operationId": "putLoanTopupApplicationOffer",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PutLoanTopupOfferRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutLoanTopupOfferResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code = 30096 Account Info Not Found\nStatus Code = 30345 Failed to retrieve application status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutLoanTopupOfferResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/application/offer": {
+      "put": {
+        "tags": [
+          "application-controller"
+        ],
+        "operationId": "putApplicationOffer",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PutApplicationOfferRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutApplicationOfferResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code = 30096 Account Info Not Found\nStatus Code = 30345 Failed to retrieve application status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutApplicationOfferResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/topup/status/inquiry": {
+      "post": {
+        "tags": [
+          "topup-controller"
+        ],
+        "summary": "POST Loan topup status inquiry",
+        "operationId": "postTopupStatusInquiry",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostLoanTopUpStatusInquiryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanTopUpStatusInquiryResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30295, Loan Info Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanTopUpStatusInquiryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/topup/save": {
+      "post": {
+        "tags": [
+          "topup-controller"
+        ],
+        "summary": "Loan Topup Save",
+        "operationId": "postLoanTopupSave",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostLoanTopupSaveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanTopupSaveResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30387, Invalid Input",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanTopupSaveResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/topup/preparation": {
+      "post": {
+        "tags": [
+          "topup-controller"
+        ],
+        "summary": "Loan Topup Preparation",
+        "operationId": "postLoanTopupPreparation",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostLoanTopupPreparationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanTopupPreparationResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30364, Loan Application draft invalid or expired",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanTopupPreparationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/topup/initialization": {
+      "post": {
+        "tags": [
+          "topup-controller"
+        ],
+        "summary": "Post Loan Topup Initialization",
+        "operationId": "postLoanTopupInitializationService",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostLoanTopupInitializationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanTopupInitializationResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30334, Invalid NIK Data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanTopupInitializationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/topup/execution": {
+      "post": {
+        "tags": [
+          "topup-controller"
+        ],
+        "summary": "Post Loan Topup Excution",
+        "operationId": "postLoanTopupExecution",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostLoanTopupExecutionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanTopupExecutionResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30295, Loan Info Not Found    ",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanTopupExecutionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/topup/attachment": {
+      "post": {
+        "tags": [
+          "topup-controller"
+        ],
+        "summary": "Upload loan additional document and store it in stage table",
+        "operationId": "postTopupAttachment",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostTopupAttachmentReqeust"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30378, File conversion failed",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/topup/agreement/submit": {
+      "post": {
+        "tags": [
+          "topup-controller"
+        ],
+        "summary": "Post Loan Topup Agreement Submit",
+        "operationId": "postLoanTopupAgreementSubmit",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostLoanTopupAgreementSubmitRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30096, Account Info Not Found\nStatus Code =  30345, Failed to retrieve application status \nStatus Code =  30379, Failed to upload document \nStatus Code =  30396, Failed to send to SMTP",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/product/total-fee/inquiry": {
+      "post": {
+        "tags": [
+          "loan-controller"
+        ],
+        "operationId": "postProductTotalFeeInquiry",
+        "parameters": [
+          {
+            "name": "X-Customer-ID",
+            "in": "header",
+            "description": "Customer ID"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductTotalFeeInquiryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTotalFeeInquiryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTotalFeeInquiryResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code = 30371 Loan Application Whitelist Not Found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTotalFeeInquiryResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTotalFeeInquiryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/primaries": {
+      "post": {
+        "tags": [
+          "loan-controller"
+        ],
+        "operationId": "postLoanPrimaries",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoanPrimariesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30295, Loan info not found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/origination/verify": {
+      "post": {
+        "tags": [
+          "origination-controller"
+        ],
+        "operationId": "postLoanOriginationVerify",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostLoanOriginationVerifyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30364, Application Stage Attachment Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/origination/save": {
+      "post": {
+        "tags": [
+          "origination-controller"
+        ],
+        "operationId": "postOriginationSave",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOriginationSaveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOriginationSaveResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30387, Loan info not found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOriginationSaveResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Status Code =  80000, General Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOriginationSaveResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/origination/preparation": {
+      "post": {
+        "tags": [
+          "origination-controller"
+        ],
+        "operationId": "postOriginationPreparation",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OriginationPreparationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OriginationPreparationResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30041, Data Not Found in DB loan",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OriginationPreparationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/origination/initialization": {
+      "post": {
+        "tags": [
+          "loan-controller"
+        ],
+        "operationId": "postLoanOriginationInitialization",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostLoanOriginationInitializationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanOriginationInitializationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanOriginationInitializationResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code = 30295 Loan Info not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanOriginationInitializationResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanOriginationInitializationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/origination/execution": {
+      "post": {
+        "tags": [
+          "loan-controller"
+        ],
+        "operationId": "postLoanOriginationExecution",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostLoanOriginationExecutionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanOriginationExecutionResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code = 30295 Loan Info not found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanOriginationExecutionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/origination/attachment": {
+      "post": {
+        "tags": [
+          "origination-controller"
+        ],
+        "operationId": "postOriginationAttachment",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostLoanOriginationAttachmentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30295, Loan info not found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/insurance/premium": {
+      "post": {
+        "tags": [
+          "loan-controller"
+        ],
+        "operationId": "postLoanInsurancePremium",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostLoanInsurancePremiumRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanInsurancePremiumResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanInsurancePremiumResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code = 30xxx Loan Insurance Premium not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanInsurancePremiumResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanInsurancePremiumResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/application/status/inquiry": {
+      "post": {
+        "tags": [
+          "application-controller"
+        ],
+        "operationId": "postLoanApplicationStatusInq",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostLoanApplicationStatusInquiryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanApplicationStatusInquiryResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30390, Failed to retrieve loan application status",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanApplicationStatusInquiryResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Status Code =  80000, General Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanApplicationStatusInquiryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/application/agreement/submit": {
+      "post": {
+        "tags": [
+          "application-controller"
+        ],
+        "operationId": "postLoanAgreementSubmit",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostApplicationAgreementSubmitRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code = 30096 Loan Info not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/agreement/accept": {
+      "post": {
+        "tags": [
+          "loan-controller"
+        ],
+        "operationId": "postLoanAgreementAccept",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostLoanAgreementAcceptRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanAgreementAcceptResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanAgreementAcceptResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code = 30xxx Not elligible to see loan agreement.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanAgreementAcceptResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLoanAgreementAcceptResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/account/detail": {
+      "post": {
+        "tags": [
+          "loan-controller"
+        ],
+        "operationId": "getLoanDetail",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostAccountDetailRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAccountDetailResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code = 30295 Loan Info not found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAccountDetailResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v2/topup/check": {
+      "get": {
+        "tags": [
+          "loan-v-2-controller"
+        ],
+        "operationId": "getLoanTopupCheckV2",
+        "parameters": [
+          {
+            "name": "isCheckWhitelistOnly",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanTopupCheckResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanTopupCheckResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code = 30334 Invalid NIK Data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanTopupCheckResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanTopupCheckResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v2/origination/check": {
+      "get": {
+        "tags": [
+          "loan-v-2-controller"
+        ],
+        "operationId": "getOriginationCheckV2",
+        "parameters": [
+          {
+            "name": "isCheckWhitelistOnly",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "X-Customer-ID",
+            "in": "header",
+            "description": "Customer ID"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOriginationCheckResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOriginationCheckResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code = 30364 Loan Application draft invalid or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOriginationCheckResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOriginationCheckResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/topup/{topupApplicationId}": {
+      "get": {
+        "tags": [
+          "topup-controller"
+        ],
+        "summary": "Loan Topup Application",
+        "operationId": "getLoanTopup",
+        "parameters": [
+          {
+            "name": "topupApplicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanTopupResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30295, Data Not Found in DB loan",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanTopupResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/topup/{topupApplicationId}/offers": {
+      "get": {
+        "tags": [
+          "topup-controller"
+        ],
+        "summary": "Get Loan Topup Application Id Offers",
+        "operationId": "getTopupApplicationOffersResponse",
+        "parameters": [
+          {
+            "name": "topupApplicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTopupApplicationOffersResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/topup/{topupApplicationId}/agreement/signed/download": {
+      "get": {
+        "tags": [
+          "topup-controller"
+        ],
+        "summary": "Download agreement for loan topup",
+        "operationId": "getTopupApplicationAgreementDownload",
+        "parameters": [
+          {
+            "name": "topupApplicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30356, Failed to Download File from Documentum",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Status Code =  80000, General Error",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/topup/{applicationId}/agreement/{agreementType}": {
+      "get": {
+        "tags": [
+          "topup-controller"
+        ],
+        "summary": "Get Loan Topup Application Id Offers",
+        "operationId": "getTopupApplicationIdAgreementResponse",
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "agreementType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTopupApplicationIdAgreementResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/topup/save/{topupApplicationId}": {
+      "get": {
+        "tags": [
+          "topup-controller"
+        ],
+        "summary": "Get latest step and fields input of loan topup application",
+        "operationId": "getTopupSaveResponse",
+        "parameters": [
+          {
+            "name": "topupApplicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTopupSaveResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30364, Loan Application draft invalid or expired",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTopupSaveResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/topup/product/{productCode}": {
+      "get": {
+        "tags": [
+          "topup-controller"
+        ],
+        "summary": "Get loan topup product details",
+        "operationId": "getLoanTopupProduct",
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanTopupProductResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30295, Loan Info not found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanTopupProductResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Status Code =  80000, General Technical Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanTopupProductResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/topup/pageNumber": {
+      "get": {
+        "tags": [
+          "topup-controller"
+        ],
+        "summary": "Get page number",
+        "operationId": "getTopupPageNumber",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTopupPageNumberResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/topup/check": {
+      "get": {
+        "tags": [
+          "loan-controller"
+        ],
+        "operationId": "getLoanTopupCheck",
+        "parameters": [
+          {
+            "name": "isCheckWhitelistOnly",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanTopupCheckResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanTopupCheckResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code = 30334 Invalid NIK Data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanTopupCheckResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanTopupCheckResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/product/{productCode}": {
+      "get": {
+        "tags": [
+          "product-controller"
+        ],
+        "operationId": "getLoanProduct",
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanProductResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30295, Loan Info not found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanProductResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Status Code =  80000, General Technical Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanProductResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/partner/{partnerId}/branches": {
+      "get": {
+        "tags": [
+          "loan-controller"
+        ],
+        "operationId": "getPartnerBranches",
+        "parameters": [
+          {
+            "name": "partnerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPartnerBranchesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/origination/save/{applicationId}": {
+      "get": {
+        "tags": [
+          "origination-controller"
+        ],
+        "operationId": "getLoanOriginationSaveByAppId",
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanOriginationSaveResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30364, Application Stage Attachment Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanOriginationSaveResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/origination/pageNumber": {
+      "get": {
+        "tags": [
+          "origination-controller"
+        ],
+        "operationId": "getPageNumber",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOriginationPageNumberResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/origination/list": {
+      "get": {
+        "tags": [
+          "origination-controller"
+        ],
+        "operationId": "getOriginationList",
+        "parameters": [
+          {
+            "name": "cif",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOriginationListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/origination/check": {
+      "get": {
+        "tags": [
+          "origination-controller"
+        ],
+        "operationId": "getOriginationCheck",
+        "parameters": [
+          {
+            "name": "isCheckWhitelistOnly",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "X-Customer-ID",
+            "in": "header",
+            "description": "Customer ID"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOriginationCheckResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOriginationCheckResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code = 30364 Loan Application draft invalid or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOriginationCheckResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOriginationCheckResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/origination/attachment/{documentType}/{applicationId}": {
+      "get": {
+        "tags": [
+          "origination-controller"
+        ],
+        "operationId": "getLoanOriginationAttachment",
+        "parameters": [
+          {
+            "name": "documentType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanOriginationAttachmentResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30356, Documentum Retrieve Data Failed",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanOriginationAttachmentResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Status Code =  80000, Config Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanOriginationAttachmentResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/insurance/list": {
+      "get": {
+        "tags": [
+          "loan-controller"
+        ],
+        "operationId": "getInsuranceList",
+        "parameters": [
+          {
+            "name": "applicationType",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productCode",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tenure",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "loanAmount",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInsuranceListResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30367, Loan insurance not found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInsuranceListResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Status Code =  80000, Config Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInsuranceListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/campaign/list": {
+      "get": {
+        "tags": [
+          "loan-controller"
+        ],
+        "operationId": "getCampaignList",
+        "parameters": [
+          {
+            "name": "cif",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCampaignListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/application/{applicationId}": {
+      "get": {
+        "tags": [
+          "application-controller"
+        ],
+        "operationId": "getApplicationId",
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetApplicationIdResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30295, Loan info not found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetApplicationIdResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/application/{applicationId}/offers": {
+      "get": {
+        "tags": [
+          "application-controller"
+        ],
+        "operationId": "getApplicationOffers",
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetApplicationOffersResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30364, Application info not found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetApplicationOffersResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/application/{applicationId}/agreement/{agreementType}": {
+      "get": {
+        "tags": [
+          "application-controller"
+        ],
+        "operationId": "getOriginationPreparation",
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "agreementType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanApplicationAgreementResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30356, Fail to download file from Documentum",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanApplicationAgreementResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Status Code =  80000, General Technical Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanApplicationAgreementResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/application/{applicationId}/agreement/signed/download": {
+      "get": {
+        "tags": [
+          "application-controller"
+        ],
+        "operationId": "getApplicationAgreementDownload",
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code =  30356, Failed to Download File from Documentum",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Status Code =  80000, General Error",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/accounts": {
+      "get": {
+        "tags": [
+          "loan-controller"
+        ],
+        "operationId": "getUserLoanListRequest",
+        "parameters": [
+          {
+            "name": "X-Customer-ID",
+            "in": "header",
+            "description": "Customer ID"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanAccountsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanAccountsResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status Code = 30295 Loan Info not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanAccountsResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLoanAccountsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loan/v1/accounts/cached/{refKey}": {
+      "get": {
+        "tags": [
+          "loan-controller"
+        ],
+        "operationId": "getAccountsCached",
+        "parameters": [
+          {
+            "name": "refKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "API Access Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Language Preference",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id-ID",
+                "en-ID"
+              ]
+            }
+          },
+          {
+            "name": "X-Platform",
+            "in": "header",
+            "description": "Mobile App Platform",
+            "required": true,
+            "schema": {
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "Mobile App Version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The 200 (OK) status code indicates that the request has succeeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAccountsCachedResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PutLoanTopupOfferRequest": {
+        "required": [
+          "applicationId",
+          "offerId",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string"
+          },
+          "offerId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "declineReason": {
+            "type": "string"
+          }
+        },
+        "description": "Put Loan Topup Offer Request"
+      },
+      "PutLoanTopupOfferResponse": {
+        "type": "object",
+        "properties": {
+          "loanAgreementNumber": {
+            "type": "string"
+          }
+        },
+        "description": "Put Loan Topup Offer Response"
+      },
+      "PutApplicationOfferRequest": {
+        "required": [
+          "applicationId",
+          "offerId",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string",
+            "description": "Application Id"
+          },
+          "offerId": {
+            "type": "string",
+            "description": "Offer Id"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type"
+          },
+          "declineReason": {
+            "type": "string",
+            "description": "Decline Reason"
+          }
+        },
+        "description": "Put Application Offer Request"
+      },
+      "PutApplicationOfferResponse": {
+        "type": "object",
+        "properties": {
+          "loanAgreementNumber": {
+            "type": "string",
+            "description": "Loan Agreement Number"
+          }
+        },
+        "description": "Put Application Offer Response"
+      },
+      "PostLoanTopUpStatusInquiryRequest": {
+        "required": [
+          "topupApplicationId"
+        ],
+        "type": "object",
+        "properties": {
+          "messageId": {
+            "type": "string",
+            "description": "Message ID"
+          },
+          "topupApplicationId": {
+            "type": "string",
+            "description": "Application ID"
+          }
+        },
+        "description": "Post Loan Topup Status Inquiry Request"
+      },
+      "DisbursementAccount": {
+        "type": "object",
+        "properties": {
+          "accountNumber": {
+            "type": "string"
+          },
+          "currencyCode": {
+            "type": "string"
+          },
+          "availableBalance": {
+            "type": "number"
+          },
+          "holdBalance": {
+            "type": "number"
+          },
+          "shortName": {
+            "type": "string"
+          },
+          "dateOpened": {
+            "type": "string"
+          },
+          "accountStatus": {
+            "type": "string"
+          },
+          "branchCode": {
+            "type": "string"
+          },
+          "accountType": {
+            "type": "string"
+          },
+          "productName": {
+            "type": "string"
+          },
+          "productSubtype": {
+            "type": "string"
+          },
+          "isEligibleSOF": {
+            "type": "boolean"
+          },
+          "cardImage": {
+            "type": "string"
+          },
+          "alias": {
+            "type": "string"
+          }
+        },
+        "description": "Disbursement Account"
+      },
+      "PostLoanTopUpStatusInquiryResponse": {
+        "type": "object",
+        "properties": {
+          "productName": {
+            "type": "string",
+            "description": "Product Name"
+          },
+          "tenor": {
+            "type": "integer",
+            "description": "Tenor",
+            "format": "int32"
+          },
+          "interestRate": {
+            "type": "number",
+            "description": "Interest Rate"
+          },
+          "offerType": {
+            "type": "string",
+            "description": "Offer Type"
+          },
+          "currencyCode": {
+            "type": "string",
+            "description": "Currency Code"
+          },
+          "statusHistories": {
+            "type": "array",
+            "description": "List of Status History",
+            "items": {
+              "$ref": "#/components/schemas/StatusHistoryResponse"
+            }
+          },
+          "disbursementAccount": {
+            "$ref": "#/components/schemas/DisbursementAccount"
+          },
+          "expiryTime": {
+            "type": "string",
+            "description": "Expiry Time"
+          },
+          "processingDayInstallment": {
+            "type": "string",
+            "description": "Processing Day Installment"
+          },
+          "outstandingBalance": {
+            "type": "number",
+            "description": "Outstanding Balance"
+          },
+          "isDocumentSigned": {
+            "type": "boolean",
+            "description": "Is Document Signed"
+          },
+          "loanAmount": {
+            "type": "number",
+            "description": "Loan Amount"
+          },
+          "installmentAmount": {
+            "type": "number",
+            "description": "Installment Amount"
+          }
+        },
+        "description": "Post Loan Topup Status Inquiry Response"
+      },
+      "StatusHistoryResponse": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "description": "Status Code"
+          },
+          "statusDescription": {
+            "type": "string",
+            "description": "Status Description"
+          },
+          "updatedDate": {
+            "type": "string",
+            "description": "Updated Date"
+          },
+          "isLatestStatus": {
+            "type": "boolean",
+            "description": "is Latest Status"
+          }
+        },
+        "description": "Status History"
+      },
+      "CurrentAddress": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "rt": {
+            "type": "string"
+          },
+          "rw": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "district": {
+            "type": "string"
+          },
+          "village": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "ownershipStatus": {
+            "type": "string"
+          },
+          "homePhoneNumber": {
+            "type": "string"
+          },
+          "homePhoneAreaCode": {
+            "type": "string"
+          }
+        },
+        "description": "Current Address"
+      },
+      "CurrentWorkplace": {
+        "type": "object",
+        "properties": {
+          "partnerId": {
+            "type": "string",
+            "description": "Partner Id"
+          },
+          "partnerBranchCode": {
+            "type": "string",
+            "description": "Partner Branch Code"
+          },
+          "partnerName": {
+            "type": "string",
+            "description": "Partner Name"
+          },
+          "partnerDistributionId": {
+            "type": "string",
+            "description": "Partner Distribution Id"
+          },
+          "address": {
+            "type": "string",
+            "description": "Address"
+          },
+          "companyName": {
+            "type": "string",
+            "description": "Company Name"
+          },
+          "companyPhoneAreaCode": {
+            "type": "string",
+            "description": "Company Phone Area Code"
+          },
+          "companyPhoneNumber": {
+            "type": "string",
+            "description": "Company Phone Number"
+          },
+          "industryType": {
+            "type": "string",
+            "description": "Industry Type"
+          },
+          "province": {
+            "type": "string",
+            "description": "Province"
+          },
+          "city": {
+            "type": "string",
+            "description": "City"
+          },
+          "village": {
+            "type": "string",
+            "description": "Village"
+          },
+          "district": {
+            "type": "string",
+            "description": "District"
+          },
+          "postalCode": {
+            "type": "string",
+            "description": "Postal Code"
+          }
+        },
+        "description": "Current Workplace"
+      },
+      "FinancialInformation": {
+        "type": "object",
+        "properties": {
+          "npwpNumber": {
+            "type": "string"
+          }
+        },
+        "description": "Financial Information"
+      },
+      "JobInformation": {
+        "type": "object",
+        "properties": {
+          "position": {
+            "type": "string"
+          },
+          "idNumber": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "startWorkingFrom": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "workEmail": {
+            "type": "string"
+          }
+        },
+        "description": "Job Information"
+      },
+      "LoanInformation": {
+        "type": "object",
+        "properties": {
+          "loanAmount": {
+            "type": "number"
+          },
+          "tenor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "interestRate": {
+            "type": "number"
+          },
+          "installmentAmount": {
+            "type": "number"
+          },
+          "insuranceCode": {
+            "type": "string"
+          },
+          "insuranceFee": {
+            "type": "number"
+          },
+          "provisionFee": {
+            "type": "number"
+          },
+          "adminFee": {
+            "type": "number"
+          }
+        },
+        "description": "Loan Information"
+      },
+      "PostLoanTopupSaveRequest": {
+        "required": [
+          "pageNumber",
+          "topupApplicationId"
+        ],
+        "type": "object",
+        "properties": {
+          "topupApplicationId": {
+            "type": "string",
+            "description": "Application ID"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "description": "Page Number",
+            "format": "int32"
+          },
+          "loanInformation": {
+            "$ref": "#/components/schemas/LoanInformation"
+          },
+          "currentAddress": {
+            "$ref": "#/components/schemas/CurrentAddress"
+          },
+          "currentWorkplace": {
+            "$ref": "#/components/schemas/CurrentWorkplace"
+          },
+          "jobInformation": {
+            "$ref": "#/components/schemas/JobInformation"
+          },
+          "financialInformation": {
+            "$ref": "#/components/schemas/FinancialInformation"
+          }
+        },
+        "description": "Post Loan Topup Save Request"
+      },
+      "PostLoanTopupSaveResponse": {
+        "type": "object",
+        "properties": {
+          "isNpwpMandatory": {
+            "type": "boolean",
+            "description": "is NPWP Mandatory"
+          }
+        },
+        "description": "Post Loan Topup Save Response"
+      },
+      "PostLoanTopupPreparationRequest": {
+        "required": [
+          "topupApplicationId"
+        ],
+        "type": "object",
+        "properties": {
+          "topupApplicationId": {
+            "type": "string",
+            "description": "Application ID"
+          }
+        },
+        "description": "Post Loan Topup Preparation Request"
+      },
+      "PostLoanTopupPreparationResponse": {
+        "type": "object",
+        "properties": {
+          "authenticationType": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "verificationId": {
+            "type": "string"
+          }
+        },
+        "description": "Post Loan Topup Preparation Response"
+      },
+      "PostLoanTopupInitializationRequest": {
+        "required": [
+          "adminFee",
+          "installmentAmount",
+          "interestRate",
+          "loanAmount",
+          "productCode",
+          "provisionFee",
+          "tenor"
+        ],
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string"
+          },
+          "insuranceCode": {
+            "type": "string"
+          },
+          "loanAmount": {
+            "type": "number"
+          },
+          "tenor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "interestRate": {
+            "type": "number"
+          },
+          "installmentAmount": {
+            "type": "number"
+          },
+          "insuranceFee": {
+            "type": "number"
+          },
+          "provisionFee": {
+            "type": "number"
+          },
+          "adminFee": {
+            "type": "number"
+          }
+        },
+        "description": "Post Loan Topup Initialization Request"
+      },
+      "CurrentAddressResponse": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "rt": {
+            "type": "string"
+          },
+          "rw": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "district": {
+            "type": "string"
+          },
+          "village": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "ownershipStatus": {
+            "type": "string"
+          },
+          "homePhoneNumber": {
+            "type": "string"
+          },
+          "homePhoneAreaCode": {
+            "type": "string"
+          }
+        },
+        "description": "Current Address Response"
+      },
+      "CurrentWorkplaceResponse": {
+        "type": "object",
+        "properties": {
+          "partnerId": {
+            "type": "string"
+          },
+          "partnerName": {
+            "type": "string"
+          },
+          "partnerBranchCode": {
+            "type": "string"
+          },
+          "partnerDistributionId": {
+            "type": "string"
+          },
+          "companyName": {
+            "type": "string"
+          },
+          "companyPhoneAreaCode": {
+            "type": "string"
+          },
+          "companyPhoneNumber": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "district": {
+            "type": "string"
+          },
+          "village": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "industryType": {
+            "type": "string"
+          }
+        },
+        "description": "Current Workplace Response"
+      },
+      "DynamicFieldResponse": {
+        "type": "object",
+        "properties": {
+          "fieldKey": {
+            "type": "string"
+          },
+          "isEditable": {
+            "type": "boolean"
+          },
+          "isMandatory": {
+            "type": "boolean"
+          }
+        },
+        "description": "Dynamic Field Response"
+      },
+      "EmergencyContactResponse": {
+        "type": "object",
+        "properties": {
+          "contactName": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          }
+        },
+        "description": "Emergency Contact Response"
+      },
+      "FinancialInformationResponse": {
+        "type": "object",
+        "properties": {
+          "npwpNumber": {
+            "type": "string"
+          }
+        },
+        "description": "Financial Information Response"
+      },
+      "JobInformationTopupResponse": {
+        "type": "object",
+        "properties": {
+          "position": {
+            "type": "string"
+          },
+          "idNumber": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "startWorkingFrom": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "workEmail": {
+            "type": "string"
+          }
+        },
+        "description": "Job Information Topup Response"
+      },
+      "LoanInformationResponse": {
+        "type": "object",
+        "properties": {
+          "productType": {
+            "type": "string"
+          },
+          "productName": {
+            "type": "string"
+          },
+          "productCode": {
+            "type": "string"
+          },
+          "insuranceCode": {
+            "type": "string"
+          },
+          "isNpwpRequired": {
+            "type": "boolean"
+          },
+          "currencyCode": {
+            "type": "string"
+          },
+          "loanAmount": {
+            "type": "number"
+          },
+          "tenor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "interestRate": {
+            "type": "number"
+          },
+          "installmentAmount": {
+            "type": "number"
+          },
+          "insuranceFee": {
+            "type": "number"
+          },
+          "provisionFee": {
+            "type": "number"
+          },
+          "adminFee": {
+            "type": "number"
+          },
+          "totalFee": {
+            "type": "number"
+          },
+          "totalAmount": {
+            "type": "number"
+          },
+          "verificationReferenceId": {
+            "type": "string"
+          },
+          "isNpwpMandatory": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "description": "Loan Information Response"
+      },
+      "PersonalInformationResponse": {
+        "type": "object",
+        "properties": {
+          "lastEducation": {
+            "type": "string"
+          },
+          "maritalStatus": {
+            "type": "string"
+          },
+          "totalDependant": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mobileNumber": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "description": "Personal Information Response"
+      },
+      "PostLoanTopupInitializationResponse": {
+        "type": "object",
+        "properties": {
+          "topupApplicationId": {
+            "type": "string"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "loanInformation": {
+            "$ref": "#/components/schemas/LoanInformationResponse"
+          },
+          "personalInformation": {
+            "$ref": "#/components/schemas/PersonalInformationResponse"
+          },
+          "currentAddress": {
+            "$ref": "#/components/schemas/CurrentAddressResponse"
+          },
+          "currentWorkplace": {
+            "$ref": "#/components/schemas/CurrentWorkplaceResponse"
+          },
+          "jobInformation": {
+            "$ref": "#/components/schemas/JobInformationTopupResponse"
+          },
+          "financialInformation": {
+            "$ref": "#/components/schemas/FinancialInformationResponse"
+          },
+          "emergencyContact": {
+            "$ref": "#/components/schemas/EmergencyContactResponse"
+          },
+          "dynamicFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DynamicFieldResponse"
+            }
+          },
+          "scenarioFlow": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Scenario"
+            }
+          }
+        },
+        "description": "Post Loan Topup Initialization Response"
+      },
+      "Scenario": {
+        "type": "object",
+        "properties": {
+          "pageKey": {
+            "type": "string"
+          },
+          "sequence": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PostLoanTopupExecutionRequest": {
+        "required": [
+          "topupApplicationId"
+        ],
+        "type": "object",
+        "properties": {
+          "topupApplicationId": {
+            "type": "string",
+            "description": "Application ID"
+          }
+        },
+        "description": "Post Loan Topup Execution Request"
+      },
+      "PostLoanTopupExecutionResponse": {
+        "type": "object",
+        "properties": {
+          "losApplicationId": {
+            "type": "string"
+          }
+        },
+        "description": "Post Loan Topup Execution Response"
+      },
+      "PostTopupAttachmentReqeust": {
+        "required": [
+          "documentContent",
+          "documentFormat",
+          "documentType",
+          "topupApplicationId"
+        ],
+        "type": "object",
+        "properties": {
+          "documentType": {
+            "type": "string",
+            "description": "Document Type"
+          },
+          "documentFormat": {
+            "type": "string",
+            "description": "Document Format"
+          },
+          "topupApplicationId": {
+            "type": "string",
+            "description": "Topup Application ID"
+          },
+          "npwpNumber": {
+            "type": "string",
+            "description": "NPWP Number"
+          },
+          "documentContent": {
+            "type": "string",
+            "description": "Document Content"
+          }
+        },
+        "description": "Post Loan Topup Attachment Request"
+      },
+      "EmptyResponse": {
+        "type": "object"
+      },
+      "PostLoanTopupAgreementSubmitRequest": {
+        "required": [
+          "topupApplicationId"
+        ],
+        "type": "object",
+        "properties": {
+          "topupApplicationId": {
+            "type": "string"
+          }
+        }
+      },
+      "ProductTotalFeeInquiryRequest": {
+        "required": [
+          "installment",
+          "loanAmount",
+          "productCode"
+        ],
+        "type": "object",
+        "properties": {
+          "installment": {
+            "type": "number",
+            "description": "installment"
+          },
+          "productCode": {
+            "type": "string",
+            "description": "Product Code"
+          },
+          "loanAmount": {
+            "type": "number",
+            "description": "loan Amount"
+          },
+          "insuranceCode": {
+            "type": "string",
+            "description": "Insurance Code"
+          },
+          "tenure": {
+            "type": "integer",
+            "description": "Tenure",
+            "format": "int32"
+          }
+        }
+      },
+      "ProductTotalFeeInquiryResponse": {
+        "type": "object",
+        "properties": {
+          "currencyCode": {
+            "type": "string",
+            "description": "Currency Code"
+          },
+          "provisionFee": {
+            "type": "number",
+            "description": "Provision Fee"
+          },
+          "adminFee": {
+            "type": "number",
+            "description": "adminFee"
+          },
+          "insuranceFee": {
+            "type": "number",
+            "description": "Insurance Fee"
+          },
+          "totalFee": {
+            "type": "number",
+            "description": "Total Fee"
+          },
+          "totalPayment": {
+            "type": "number",
+            "description": "Total Payment"
+          }
+        }
+      },
+      "AccountNumberRequest": {
+        "required": [
+          "accountNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "accountNumber": {
+            "type": "string"
+          }
+        }
+      },
+      "LoanPrimariesRequest": {
+        "required": [
+          "accounts"
+        ],
+        "type": "object",
+        "properties": {
+          "accounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountNumberRequest"
+            }
+          }
+        }
+      },
+      "PostLoanOriginationVerifyRequest": {
+        "required": [
+          "applicationId",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string",
+            "description": "Application Id"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of verification"
+          },
+          "cif": {
+            "type": "string",
+            "description": "Cif"
+          }
+        },
+        "description": "Post Loan Origination Verify Request"
+      },
+      "EmergencyContact": {
+        "type": "object",
+        "properties": {
+          "contactName": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          }
+        }
+      },
+      "PersonalInformation": {
+        "type": "object",
+        "properties": {
+          "lastEducation": {
+            "type": "string"
+          },
+          "maritalStatus": {
+            "type": "string"
+          },
+          "totalDependant": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PostOriginationSaveRequest": {
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "loanInformation": {
+            "$ref": "#/components/schemas/LoanInformation"
+          },
+          "personalInformation": {
+            "$ref": "#/components/schemas/PersonalInformation"
+          },
+          "currentAddress": {
+            "$ref": "#/components/schemas/CurrentAddress"
+          },
+          "currentWorkplace": {
+            "$ref": "#/components/schemas/CurrentWorkplace"
+          },
+          "jobInformation": {
+            "$ref": "#/components/schemas/JobInformation"
+          },
+          "financialInformation": {
+            "$ref": "#/components/schemas/FinancialInformation"
+          },
+          "emergencyContact": {
+            "$ref": "#/components/schemas/EmergencyContact"
+          }
+        }
+      },
+      "PostOriginationSaveResponse": {
+        "type": "object",
+        "properties": {
+          "isNpwpMandatory": {
+            "type": "boolean",
+            "description": "is NPWP Mandatory"
+          }
+        },
+        "description": "Post Origination Save Response"
+      },
+      "OriginationPreparationRequest": {
+        "required": [
+          "applicationId"
+        ],
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string"
+          }
+        }
+      },
+      "OriginationPreparationResponse": {
+        "type": "object",
+        "properties": {
+          "authenticationType": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "verificationId": {
+            "type": "string"
+          }
+        }
+      },
+      "PostLoanOriginationInitializationRequest": {
+        "required": [
+          "adminFee",
+          "installmentAmount",
+          "insuranceFee",
+          "interestRate",
+          "loanAmount",
+          "productCode",
+          "provisionFee",
+          "tenor"
+        ],
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string"
+          },
+          "insuranceCode": {
+            "type": "string"
+          },
+          "interestRate": {
+            "type": "number"
+          },
+          "installmentAmount": {
+            "type": "number"
+          },
+          "loanAmount": {
+            "type": "number"
+          },
+          "tenor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "insuranceFee": {
+            "type": "number"
+          },
+          "provisionFee": {
+            "type": "number"
+          },
+          "adminFee": {
+            "type": "number"
+          }
+        },
+        "description": "Post Loan Origination Initialization Request"
+      },
+      "JobInformationResponse": {
+        "type": "object",
+        "properties": {
+          "position": {
+            "type": "string"
+          },
+          "idNumber": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "startWorkingFrom": {
+            "type": "string"
+          },
+          "workEmail": {
+            "type": "string"
+          }
+        },
+        "description": "Job Information Response"
+      },
+      "PostLoanOriginationInitializationResponse": {
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "loanInformation": {
+            "$ref": "#/components/schemas/LoanInformationResponse"
+          },
+          "personalInformation": {
+            "$ref": "#/components/schemas/PersonalInformationResponse"
+          },
+          "currentAddress": {
+            "$ref": "#/components/schemas/CurrentAddressResponse"
+          },
+          "currentWorkplace": {
+            "$ref": "#/components/schemas/CurrentWorkplaceResponse"
+          },
+          "jobInformation": {
+            "$ref": "#/components/schemas/JobInformationResponse"
+          },
+          "financialInformation": {
+            "$ref": "#/components/schemas/FinancialInformationResponse"
+          },
+          "emergencyContact": {
+            "$ref": "#/components/schemas/EmergencyContactResponse"
+          },
+          "dynamicFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DynamicFieldResponse"
+            }
+          },
+          "scenarioFlow": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Scenario"
+            }
+          }
+        },
+        "description": "Post Loan Origination Initialization Response"
+      },
+      "PostLoanOriginationExecutionRequest": {
+        "required": [
+          "applicationId"
+        ],
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string",
+            "description": "Application Id"
+          }
+        },
+        "description": "Post Loan Origination Execution Request"
+      },
+      "PostLoanOriginationExecutionResponse": {
+        "type": "object",
+        "properties": {
+          "losApplicationId": {
+            "type": "string"
+          }
+        },
+        "description": "Post Loan Origination Execution Response"
+      },
+      "PostLoanOriginationAttachmentRequest": {
+        "required": [
+          "applicationId",
+          "documentContent",
+          "documentFormat",
+          "documentType"
+        ],
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string",
+            "description": "Application Id"
+          },
+          "npwpNumber": {
+            "type": "string",
+            "description": "Npwp Number"
+          },
+          "documentType": {
+            "type": "string",
+            "description": "Document Type"
+          },
+          "documentFormat": {
+            "type": "string",
+            "description": "Document Format"
+          },
+          "documentContent": {
+            "type": "string",
+            "description": "Document Content"
+          }
+        },
+        "description": "Post Loan Origination Attachment Request"
+      },
+      "PostLoanInsurancePremiumRequest": {
+        "required": [
+          "insuranceType",
+          "loanAmount",
+          "providerCode",
+          "tenure"
+        ],
+        "type": "object",
+        "properties": {
+          "providerCode": {
+            "type": "string",
+            "description": "Provicer Code"
+          },
+          "tenure": {
+            "type": "integer",
+            "description": "Tenure",
+            "format": "int32"
+          },
+          "insuranceType": {
+            "type": "string",
+            "description": "Insurance Type"
+          },
+          "loanAmount": {
+            "type": "number",
+            "description": "Loan Amount"
+          }
+        },
+        "description": "Post Loan Insurance Premium Request"
+      },
+      "PostLoanInsurancePremiumResponse": {
+        "type": "object",
+        "properties": {
+          "insurancePremium": {
+            "type": "number"
+          }
+        },
+        "description": "Post Loan Insurance Premium Response"
+      },
+      "PostLoanApplicationStatusInquiryRequest": {
+        "type": "object",
+        "properties": {
+          "messageId": {
+            "type": "string",
+            "description": "Message Id"
+          },
+          "applicationId": {
+            "type": "string",
+            "description": "Application Id"
+          }
+        }
+      },
+      "PostLoanApplicationStatusInquiryResponse": {
+        "type": "object",
+        "properties": {
+          "interestRate": {
+            "type": "number",
+            "description": "Interest Rate"
+          },
+          "offerType": {
+            "type": "string",
+            "description": "Offer Type"
+          },
+          "productName": {
+            "type": "string",
+            "description": "Product Name"
+          },
+          "tenor": {
+            "type": "integer",
+            "description": "Tenor",
+            "format": "int32"
+          },
+          "loanAmount": {
+            "type": "number",
+            "description": "Loan Amount"
+          },
+          "installmentAmount": {
+            "type": "number",
+            "description": "Installment Amount"
+          },
+          "processingDayInstallment": {
+            "type": "string",
+            "description": "Processing Day Installment"
+          },
+          "currencyCode": {
+            "type": "string",
+            "description": "Currency Code"
+          },
+          "expiryTime": {
+            "type": "string",
+            "description": "Expiry Time"
+          },
+          "isDocumentSigned": {
+            "type": "boolean",
+            "description": "Is Document Signed"
+          },
+          "statusHistories": {
+            "type": "array",
+            "description": "Status Histories",
+            "items": {
+              "$ref": "#/components/schemas/StatusHistory"
+            }
+          },
+          "disbursementAccount": {
+            "$ref": "#/components/schemas/DisbursementAccount"
+          }
+        }
+      },
+      "StatusHistory": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string"
+          },
+          "statusDescription": {
+            "type": "string"
+          },
+          "updatedDate": {
+            "type": "string"
+          },
+          "isLatestStatus": {
+            "type": "boolean"
+          }
+        },
+        "description": "Status Histories"
+      },
+      "PostApplicationAgreementSubmitRequest": {
+        "required": [
+          "applicationId"
+        ],
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string",
+            "description": "ApplicationId"
+          }
+        },
+        "description": "Post Application Agreement Submit Request"
+      },
+      "PostLoanAgreementAcceptRequest": {
+        "required": [
+          "applicationId",
+          "deviceId",
+          "epin",
+          "softToken",
+          "verificationType"
+        ],
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string",
+            "description": "Application Id"
+          },
+          "verificationType": {
+            "type": "string",
+            "description": "Verification Type"
+          },
+          "epin": {
+            "type": "string",
+            "description": "Epin"
+          },
+          "softToken": {
+            "type": "string",
+            "description": "Soft Token"
+          },
+          "deviceId": {
+            "type": "string",
+            "description": "Device Id"
+          }
+        }
+      },
+      "PostLoanAgreementAcceptResponse": {
+        "required": [
+          "applicationId",
+          "verificationType"
+        ],
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string",
+            "description": "Application Id"
+          },
+          "verificationType": {
+            "type": "string",
+            "description": "Verification Type"
+          }
+        },
+        "description": "Post Loan Agreement Accept Response"
+      },
+      "PostAccountDetailRequest": {
+        "required": [
+          "account"
+        ],
+        "type": "object",
+        "properties": {
+          "account": {
+            "type": "string",
+            "description": "Loan Account Number"
+          }
+        },
+        "description": "Post Account Detail"
+      },
+      "PostAccountDetailResponse": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number"
+          },
+          "totalArrears": {
+            "type": "number"
+          },
+          "billedPrincipal": {
+            "type": "number"
+          },
+          "billedInterest": {
+            "type": "number"
+          },
+          "availableCredit": {
+            "type": "number"
+          },
+          "miscCost": {
+            "type": "number"
+          },
+          "outstandingBalance": {
+            "type": "number"
+          },
+          "dueDate": {
+            "type": "string"
+          },
+          "paymentStatus": {
+            "type": "string"
+          },
+          "otherCharges": {
+            "type": "number"
+          },
+          "lateCharges": {
+            "type": "number"
+          },
+          "administrationCharges": {
+            "type": "number"
+          },
+          "loanAmount": {
+            "type": "number"
+          },
+          "interestRate": {
+            "type": "number"
+          },
+          "disbursementDate": {
+            "type": "string"
+          },
+          "maturityDate": {
+            "type": "string"
+          },
+          "currencyType": {
+            "type": "string"
+          },
+          "isRevolving": {
+            "type": "boolean"
+          },
+          "loanAccountNumber": {
+            "type": "string"
+          },
+          "productType": {
+            "type": "string"
+          },
+          "accountOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "loanStatus": {
+            "type": "string"
+          },
+          "daysBeforeReminder": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "GetLoanTopupCheckResponse": {
+        "type": "object",
+        "properties": {
+          "eligibleProducts": {
+            "type": "array",
+            "description": "Eligible Products",
+            "items": {
+              "type": "string",
+              "description": "Eligible Products"
+            }
+          },
+          "topupApplicationId": {
+            "type": "string",
+            "description": "Topup Application ID"
+          },
+          "isEverestApplication": {
+            "type": "boolean",
+            "description": "Is Everest Application"
+          },
+          "isSubmitted": {
+            "type": "boolean",
+            "description": "Is Submitted"
+          }
+        },
+        "description": "Get Loan Topup Check Response"
+      },
+      "GetOriginationCheckResponse": {
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string"
+          },
+          "isEverestApplication": {
+            "type": "boolean"
+          },
+          "isSubmitted": {
+            "type": "boolean"
+          },
+          "eligibleProducts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "DukcapilInformation": {
+        "type": "object",
+        "properties": {
+          "dateOfBirth": {
+            "type": "string"
+          },
+          "cityOfBirth": {
+            "type": "string"
+          },
+          "religion": {
+            "type": "string"
+          },
+          "bloodGroup": {
+            "type": "string"
+          },
+          "maritalStatus": {
+            "type": "string"
+          },
+          "citizenship": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string"
+          },
+          "nikNumber": {
+            "type": "string"
+          }
+        }
+      },
+      "GetLoanTopupResponse": {
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string"
+          },
+          "productCode": {
+            "type": "string"
+          },
+          "insuranceCode": {
+            "type": "string"
+          },
+          "loanAmount": {
+            "type": "number"
+          },
+          "tenor": {
+            "type": "number"
+          },
+          "interestRate": {
+            "type": "number"
+          },
+          "installmentAmount": {
+            "type": "number"
+          },
+          "insuranceFee": {
+            "type": "number"
+          },
+          "provisionFee": {
+            "type": "number"
+          },
+          "adminFee": {
+            "type": "number"
+          },
+          "totalFee": {
+            "type": "number"
+          },
+          "totalAmount": {
+            "type": "number"
+          },
+          "applicationStatus": {
+            "type": "string"
+          },
+          "personalInformation": {
+            "$ref": "#/components/schemas/PersonalInformation"
+          },
+          "currentAddress": {
+            "$ref": "#/components/schemas/CurrentAddress"
+          },
+          "currentWorkplace": {
+            "$ref": "#/components/schemas/CurrentWorkplace"
+          },
+          "jobInformation": {
+            "$ref": "#/components/schemas/JobInformation"
+          },
+          "financialInformation": {
+            "$ref": "#/components/schemas/FinancialInformation"
+          },
+          "emergencyContact": {
+            "$ref": "#/components/schemas/EmergencyContact"
+          },
+          "dukcapilInformation": {
+            "$ref": "#/components/schemas/DukcapilInformation"
+          }
+        },
+        "description": "Get Loan Topup Response"
+      },
+      "GetTopupApplicationOffersResponse": {
+        "type": "object",
+        "properties": {
+          "productName": {
+            "type": "string"
+          },
+          "initialSubmission": {
+            "$ref": "#/components/schemas/InitialSubmissionResponse"
+          },
+          "offers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OfferResponse"
+            }
+          }
+        },
+        "description": "Get Topup Application Offer Response"
+      },
+      "InitialSubmissionResponse": {
+        "type": "object",
+        "properties": {
+          "loanAmount": {
+            "type": "number"
+          },
+          "installmentAmount": {
+            "type": "number"
+          },
+          "salaryDay": {
+            "type": "string"
+          },
+          "tenor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "interestRate": {
+            "type": "number"
+          },
+          "totalFee": {
+            "type": "number"
+          },
+          "provisionFee": {
+            "type": "number"
+          },
+          "administrationFee": {
+            "type": "number"
+          },
+          "insuranceFee": {
+            "type": "number"
+          },
+          "accumulatedFee": {
+            "type": "number"
+          },
+          "currencyCode": {
+            "type": "string"
+          }
+        },
+        "description": "Initial Submission Response"
+      },
+      "OfferResponse": {
+        "type": "object",
+        "properties": {
+          "offerId": {
+            "type": "string"
+          },
+          "loanAmount": {
+            "type": "number"
+          },
+          "tenor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "interestRate": {
+            "type": "number"
+          },
+          "totalFee": {
+            "type": "number"
+          },
+          "provisionFee": {
+            "type": "number"
+          },
+          "administrationFee": {
+            "type": "number"
+          },
+          "insuranceFee": {
+            "type": "number"
+          },
+          "accumulatedFee": {
+            "type": "number"
+          },
+          "currencyCode": {
+            "type": "string"
+          },
+          "installmentAmount": {
+            "type": "number"
+          }
+        },
+        "description": "Offer Response"
+      },
+      "GetTopupApplicationIdAgreementResponse": {
+        "type": "object",
+        "properties": {
+          "documentContent": {
+            "type": "string"
+          },
+          "documentName": {
+            "type": "string"
+          },
+          "cif": {
+            "type": "string"
+          },
+          "customerName": {
+            "type": "string"
+          },
+          "loanProductId": {
+            "type": "string"
+          },
+          "loanProductName": {
+            "type": "string"
+          },
+          "documentType": {
+            "type": "string"
+          },
+          "documentCode": {
+            "type": "string"
+          },
+          "documentRepository": {
+            "type": "string"
+          },
+          "documentCabinet": {
+            "type": "string"
+          },
+          "documentObjectType": {
+            "type": "string"
+          }
+        },
+        "description": "Get Topup Application Id Agreement Response"
+      },
+      "DynamicField": {
+        "type": "object",
+        "properties": {
+          "fieldKey": {
+            "type": "string"
+          },
+          "isEditable": {
+            "type": "boolean"
+          },
+          "isMandatory": {
+            "type": "boolean"
+          }
+        },
+        "description": "Emergency Contact Information"
+      },
+      "GetTopupSaveResponse": {
+        "type": "object",
+        "properties": {
+          "topupApplicationId": {
+            "type": "string",
+            "description": "Topup Application Id"
+          },
+          "personalInformation": {
+            "$ref": "#/components/schemas/PersonalInformation"
+          },
+          "jobInformation": {
+            "$ref": "#/components/schemas/JobInformation"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "description": "Latest page number",
+            "format": "int32"
+          },
+          "loanInformation": {
+            "$ref": "#/components/schemas/LoanInformation"
+          },
+          "financialInformation": {
+            "$ref": "#/components/schemas/FinancialInformation"
+          },
+          "currentAddress": {
+            "$ref": "#/components/schemas/CurrentAddress"
+          },
+          "currentWorkplace": {
+            "$ref": "#/components/schemas/CurrentWorkplace"
+          },
+          "emergencyContact": {
+            "$ref": "#/components/schemas/EmergencyContact"
+          },
+          "dynamicFields": {
+            "type": "array",
+            "description": "Emergency Contact Information",
+            "items": {
+              "$ref": "#/components/schemas/DynamicField"
+            }
+          },
+          "scenarioFlow": {
+            "type": "array",
+            "description": "Scenario Flow Information",
+            "items": {
+              "$ref": "#/components/schemas/ScenarioFlow"
+            }
+          },
+          "outstandingBalance": {
+            "type": "number",
+            "description": "Outstanding Balance"
+          }
+        },
+        "description": "Get latest step and fields input of loan topup application"
+      },
+      "ScenarioFlow": {
+        "type": "object",
+        "properties": {
+          "pageKey": {
+            "type": "string"
+          },
+          "sequence": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "description": "Scenario Flow Information"
+      },
+      "GetLoanTopupProductResponse": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "Product Code"
+          },
+          "productType": {
+            "type": "string",
+            "description": "Product Type"
+          },
+          "productTitle": {
+            "type": "string",
+            "description": "Product Title"
+          },
+          "productSummary": {
+            "type": "string",
+            "description": "Product Summary"
+          },
+          "productDescription": {
+            "type": "string",
+            "description": "Product Description"
+          },
+          "imageLink": {
+            "type": "string",
+            "description": "Image Link"
+          },
+          "currencyCode": {
+            "type": "string",
+            "description": "Currency Code"
+          },
+          "loanAmountInterval": {
+            "type": "number",
+            "description": "loan Amount Interval"
+          },
+          "minLoanAmount": {
+            "type": "number",
+            "description": "Minimum Loan Account"
+          },
+          "maxLoanAmount": {
+            "type": "number",
+            "description": "Maximum Loan Amount"
+          },
+          "minTenor": {
+            "type": "integer",
+            "description": "Minimum Tenor",
+            "format": "int32"
+          },
+          "maxTenor": {
+            "type": "integer",
+            "description": "Maximum Tenor",
+            "format": "int32"
+          },
+          "maxAllowedTenor": {
+            "type": "integer",
+            "description": "Max Allowed Tenor",
+            "format": "int32"
+          },
+          "minInstallmentAmount": {
+            "type": "number",
+            "description": "Min Installment Amount"
+          },
+          "maxInstallmentAmount": {
+            "type": "number",
+            "description": "Max Installment Amount"
+          },
+          "promoLowInterestRate": {
+            "type": "number",
+            "description": "Promo Low Interest Rate"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Start Date"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "End Date"
+          },
+          "benefitList": {
+            "type": "array",
+            "description": "Benefit List",
+            "items": {
+              "type": "string",
+              "description": "Benefit List"
+            }
+          },
+          "tncList": {
+            "type": "array",
+            "description": "TNC List",
+            "items": {
+              "type": "string",
+              "description": "TNC List"
+            }
+          },
+          "interestRates": {
+            "type": "array",
+            "description": "Interest Rate List",
+            "items": {
+              "$ref": "#/components/schemas/RateDto"
+            }
+          },
+          "outstandingBalance": {
+            "type": "number",
+            "description": "OutStanding Balance"
+          },
+          "insuranceProviderAvailability": {
+            "type": "boolean",
+            "description": "insurance Provider Availability"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "description": "date Of Birth"
+          }
+        },
+        "description": "Get Loan Topup Product Response"
+      },
+      "RateDto": {
+        "type": "object",
+        "properties": {
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rate": {
+            "type": "number"
+          }
+        },
+        "description": "Interest Rate List"
+      },
+      "GetTopupPageNumberResponse": {
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productCode": {
+            "type": "string"
+          }
+        }
+      },
+      "GetLoanProductResponse": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "Product Code"
+          },
+          "productDescription": {
+            "type": "string",
+            "description": "Product Description"
+          },
+          "imageLink": {
+            "type": "string",
+            "description": "Image Link"
+          },
+          "productType": {
+            "type": "string",
+            "description": "Product Type"
+          },
+          "productTitle": {
+            "type": "string",
+            "description": "Product Title"
+          },
+          "productSummary": {
+            "type": "string",
+            "description": "Product Summary"
+          },
+          "currencyCode": {
+            "type": "string",
+            "description": "Currency Code"
+          },
+          "loanAmountInterval": {
+            "type": "number",
+            "description": "loan Amount Interval"
+          },
+          "minTenor": {
+            "type": "integer",
+            "description": "Minimum Tenor",
+            "format": "int32"
+          },
+          "maxTenor": {
+            "type": "integer",
+            "description": "Maximum Tenor",
+            "format": "int32"
+          },
+          "promoLowInterestRate": {
+            "type": "number",
+            "description": "Promo Low Interest Rate"
+          },
+          "maxLoanAmount": {
+            "type": "number",
+            "description": "Maximum Loan Amount"
+          },
+          "minLoanAmount": {
+            "type": "number",
+            "description": "Minimum Loan Account"
+          },
+          "minInstallmentAmount": {
+            "type": "number",
+            "description": "Min Installment Amount"
+          },
+          "maxAllowedTenor": {
+            "type": "integer",
+            "description": "Max Allowed Tenor",
+            "format": "int32"
+          },
+          "maxInstallmentAmount": {
+            "type": "number",
+            "description": "Max Installment Amount"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "End Date"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Start Date"
+          },
+          "benefitList": {
+            "type": "array",
+            "description": "Benefit List",
+            "items": {
+              "type": "string",
+              "description": "Benefit List"
+            }
+          },
+          "tncList": {
+            "type": "array",
+            "description": "TNC List",
+            "items": {
+              "type": "string",
+              "description": "TNC List"
+            }
+          },
+          "outstandingBalance": {
+            "type": "number",
+            "description": "OutStanding Balance"
+          },
+          "interestRates": {
+            "type": "array",
+            "description": "Interest Rate List",
+            "items": {
+              "$ref": "#/components/schemas/RateDto"
+            }
+          },
+          "insuranceProviderAvailability": {
+            "type": "boolean",
+            "description": "insurance Provider Availability"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "description": "date Of Birth"
+          }
+        },
+        "description": "Get Loan Product Response"
+      },
+      "GetPartnerBranchesResponse": {
+        "type": "object",
+        "properties": {
+          "branches": {
+            "type": "array",
+            "description": "Branches",
+            "items": {
+              "$ref": "#/components/schemas/OfferList"
+            }
+          }
+        },
+        "description": "Get Partner Branches Response"
+      },
+      "OfferList": {
+        "type": "object",
+        "properties": {
+          "partnerId": {
+            "type": "string",
+            "description": "Partner Id"
+          },
+          "partnerBranchName": {
+            "type": "string",
+            "description": "Partner Branch Name"
+          },
+          "partnerBranchCode": {
+            "type": "string",
+            "description": "Partner Branch Code"
+          },
+          "partnerCompanyCategory": {
+            "type": "string",
+            "description": "Partner Company Category"
+          },
+          "partnerDistributionId": {
+            "type": "string",
+            "description": "Partner Distribution Id"
+          }
+        },
+        "description": "Branches"
+      },
+      "GetLoanOriginationSaveResponse": {
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string",
+            "description": "Application Id"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "description": "Page Number",
+            "format": "int32"
+          },
+          "financialInformation": {
+            "$ref": "#/components/schemas/FinancialInformation"
+          },
+          "currentAddress": {
+            "$ref": "#/components/schemas/CurrentAddress"
+          },
+          "loanInformation": {
+            "$ref": "#/components/schemas/LoanInformation"
+          },
+          "personalInformation": {
+            "$ref": "#/components/schemas/PersonalInformation"
+          },
+          "jobInformation": {
+            "$ref": "#/components/schemas/JobInformation"
+          },
+          "dynamicFields": {
+            "type": "array",
+            "description": "Dynamic Fields",
+            "items": {
+              "$ref": "#/components/schemas/DynamicField"
+            }
+          },
+          "currentWorkplace": {
+            "$ref": "#/components/schemas/CurrentWorkplace"
+          },
+          "scenarioFlow": {
+            "type": "array",
+            "description": "Scenario Flow",
+            "items": {
+              "$ref": "#/components/schemas/ScenarioFlow"
+            }
+          },
+          "emergencyContact": {
+            "$ref": "#/components/schemas/EmergencyContact"
+          }
+        }
+      },
+      "GetOriginationPageNumberResponse": {
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productCode": {
+            "type": "string"
+          }
+        }
+      },
+      "GetOriginationListResponse": {
+        "type": "object",
+        "properties": {
+          "loanProducts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LoanProduct"
+            }
+          }
+        }
+      },
+      "LoanProduct": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string"
+          },
+          "productType": {
+            "type": "string"
+          },
+          "statusUpdateDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "GetLoanOriginationAttachmentResponse": {
+        "type": "object",
+        "properties": {
+          "documentName": {
+            "type": "string",
+            "description": "Document Name"
+          },
+          "documentContent": {
+            "type": "string",
+            "description": "Document Content"
+          }
+        },
+        "description": "GetLoanOriginationAttachmentResponse"
+      },
+      "GetInsuranceListResponse": {
+        "type": "object",
+        "properties": {
+          "infoList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "currencyCode": {
+            "type": "string"
+          },
+          "insuranceList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Insurance"
+            }
+          }
+        }
+      },
+      "Insurance": {
+        "type": "object",
+        "properties": {
+          "insuranceName": {
+            "type": "string"
+          },
+          "insuranceCode": {
+            "type": "string"
+          },
+          "imageLink": {
+            "type": "string"
+          },
+          "insuranceType": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "CREDIT",
+                "LIFE",
+                "EMPLOYMENT_TERMINATION",
+                "GENERAL",
+                "ALL_RISK"
+              ]
+            }
+          },
+          "indicativePremium": {
+            "type": "number"
+          }
+        }
+      },
+      "CampaignListItem": {
+        "type": "object",
+        "properties": {
+          "campaignId": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "loanIdentifier": {
+            "type": "string"
+          },
+          "topupContentId": {
+            "type": "string"
+          },
+          "topupStartWorkingFrom": {
+            "type": "string"
+          },
+          "topupNoOfDependant": {
+            "type": "string"
+          },
+          "topupAdminFeeCode": {
+            "type": "string"
+          },
+          "topupAvgTakeHomePay": {
+            "type": "string"
+          },
+          "topupStartDate": {
+            "type": "string"
+          },
+          "topupEndDate": {
+            "type": "string"
+          },
+          "topupCampaignId": {
+            "type": "string"
+          },
+          "topupChannel": {
+            "type": "string"
+          },
+          "topupCifNo": {
+            "type": "string"
+          },
+          "topupCriteriaId": {
+            "type": "string"
+          },
+          "topupDocumentumLink": {
+            "type": "string"
+          },
+          "topupAddress1": {
+            "type": "string"
+          },
+          "topupFlagPhotoAvailableInDukcapil": {
+            "type": "string"
+          },
+          "topupEmergencyContactAddressLine1": {
+            "type": "string"
+          },
+          "topupEmergencyContactPhoneNumber": {
+            "type": "string"
+          },
+          "topupEmergencyContactFamilyRelationship": {
+            "type": "string"
+          },
+          "topupIsEktp": {
+            "type": "string"
+          },
+          "topupEmergencyContactName": {
+            "type": "string"
+          },
+          "topupEmployerMitra": {
+            "type": "string"
+          },
+          "topupExistingLoanAccountNumber": {
+            "type": "string"
+          },
+          "topupOccupiedSince": {
+            "type": "string"
+          },
+          "topupHomeOwnership": {
+            "type": "string"
+          },
+          "topupExecutiveRelationship": {
+            "type": "string"
+          },
+          "topupFamilyRelationship": {
+            "type": "string"
+          },
+          "topupIntstallmentNumber": {
+            "type": "string"
+          },
+          "topupInterestCode": {
+            "type": "string"
+          },
+          "topupJobPosition": {
+            "type": "string"
+          },
+          "topupAreaCode": {
+            "type": "string"
+          },
+          "topupLastApplicationNumber": {
+            "type": "string"
+          },
+          "topupLastBade": {
+            "type": "string"
+          },
+          "topupLastInstallment": {
+            "type": "string"
+          },
+          "topupLastInterestType": {
+            "type": "string"
+          },
+          "topupLastLimit": {
+            "type": "string"
+          },
+          "topupLastTenor": {
+            "type": "string"
+          },
+          "topupMandiriExecutive": {
+            "type": "string"
+          },
+          "topupMaxInstallment": {
+            "type": "string"
+          },
+          "topupMotherName": {
+            "type": "string"
+          },
+          "topupIdNumber": {
+            "type": "string"
+          },
+          "topupNip": {
+            "type": "string"
+          },
+          "topupNpwpNo": {
+            "type": "string"
+          },
+          "topupPreviousApplicationPkNumber": {
+            "type": "string"
+          },
+          "topupMobileNumber": {
+            "type": "string"
+          },
+          "topupNpwpFlag": {
+            "type": "string"
+          },
+          "topupParentId": {
+            "type": "string"
+          },
+          "topupLastEducationCode": {
+            "type": "string"
+          },
+          "topupProcessingDayInstallment": {
+            "type": "string"
+          },
+          "topupProductOffer1": {
+            "type": "string"
+          },
+          "topupProvisionCode": {
+            "type": "string"
+          },
+          "topupRequestedLoanAmount": {
+            "type": "string"
+          },
+          "topupRequestedTenor": {
+            "type": "string"
+          },
+          "topupSalaryDay": {
+            "type": "string"
+          },
+          "topupSavingAccountNo": {
+            "type": "string"
+          },
+          "topupKsmSegment": {
+            "type": "string"
+          },
+          "topupEmploymentStatus": {
+            "type": "string"
+          },
+          "topupMaritalStatus": {
+            "type": "string"
+          },
+          "topupStrategyCode": {
+            "type": "string"
+          },
+          "topupLowInterestRate": {
+            "type": "string"
+          },
+          "topupTotalKsmCurrentBalance": {
+            "type": "string"
+          },
+          "topupWhitelistId": {
+            "type": "string"
+          },
+          "topupDomicileRt": {
+            "type": "string"
+          },
+          "topupDomicileRw": {
+            "type": "string"
+          },
+          "topupDomicileDesa": {
+            "type": "string"
+          },
+          "topupDomicileKecamatan": {
+            "type": "string"
+          },
+          "topupDomicileKota": {
+            "type": "string"
+          },
+          "topupDomicileProvinsi": {
+            "type": "string"
+          },
+          "topupDomicileKodePos": {
+            "type": "string"
+          },
+          "topupHomePhoneNumber": {
+            "type": "string"
+          },
+          "topupHomePhoneNumberAreaCode": {
+            "type": "string"
+          },
+          "loanStrategyCode": {
+            "type": "string"
+          },
+          "loanIsEktp": {
+            "type": "string"
+          },
+          "loanDocumentLink": {
+            "type": "string"
+          },
+          "loanProductCode1": {
+            "type": "string"
+          },
+          "loanProductCode2": {
+            "type": "string"
+          },
+          "loanStartDate": {
+            "type": "string"
+          },
+          "loanEndDate": {
+            "type": "string"
+          },
+          "loanLastEducationCode": {
+            "type": "string"
+          },
+          "loanReqLoanAmount": {
+            "type": "string"
+          },
+          "loanReqLoanTenor": {
+            "type": "string"
+          },
+          "loanMaxInstallment": {
+            "type": "string"
+          },
+          "loanSalaryDay": {
+            "type": "string"
+          },
+          "loanProcessingDayInstallment": {
+            "type": "string"
+          },
+          "loanEmploymentStatus": {
+            "type": "string"
+          },
+          "loanNip": {
+            "type": "string"
+          },
+          "loanNikNo": {
+            "type": "string"
+          },
+          "loanPartnerName": {
+            "type": "string"
+          },
+          "loanAvgTakeHomePay": {
+            "type": "string"
+          },
+          "loanSavingAccountNo": {
+            "type": "string"
+          },
+          "loanCampaignCode": {
+            "type": "string"
+          },
+          "loanInterestRateCode": {
+            "type": "string"
+          },
+          "loanProvisionCode": {
+            "type": "string"
+          },
+          "loanAdminFeeCode": {
+            "type": "string"
+          },
+          "loanKsmSegment": {
+            "type": "string"
+          },
+          "loanNoOfDependant": {
+            "type": "string"
+          },
+          "loanMotherName": {
+            "type": "string"
+          },
+          "loanAddress1": {
+            "type": "string"
+          },
+          "loanHomeOwnership": {
+            "type": "string"
+          },
+          "loanOccupiedSince": {
+            "type": "string"
+          },
+          "loanMaritalStatus": {
+            "type": "string"
+          },
+          "loanNpwpNo": {
+            "type": "string"
+          },
+          "loanStartWorkingFrom": {
+            "type": "string"
+          },
+          "loanEmergencyRelationship": {
+            "type": "string"
+          },
+          "loanTotalCbalKsm": {
+            "type": "string"
+          },
+          "loanDukcapilPhotoFlag": {
+            "type": "string"
+          },
+          "loanNpwpFlag": {
+            "type": "string"
+          },
+          "loanContentId": {
+            "type": "string"
+          },
+          "loanPromoLowInterestRate": {
+            "type": "string"
+          },
+          "loanMitraParentId": {
+            "type": "string"
+          },
+          "loanJobPosition": {
+            "type": "string"
+          },
+          "loanCampaignId": {
+            "type": "string"
+          },
+          "loanExecutiveRelationship": {
+            "type": "string"
+          },
+          "loanFamilyRelationship": {
+            "type": "string"
+          },
+          "loanMandiriExecutive": {
+            "type": "string"
+          },
+          "loanCriteriaId": {
+            "type": "string"
+          }
+        }
+      },
+      "GetCampaignListResponse": {
+        "type": "object",
+        "properties": {
+          "campaignList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CampaignListItem"
+            }
+          }
+        },
+        "description": "GetCampaignListResponse"
+      },
+      "GetApplicationIdResponse": {
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string",
+            "description": "Application Id"
+          },
+          "productCode": {
+            "type": "string",
+            "description": "Product Code"
+          },
+          "insuranceCode": {
+            "type": "string",
+            "description": "Insurance Code"
+          },
+          "loanAmount": {
+            "type": "number",
+            "description": "Loan Amount"
+          },
+          "tenor": {
+            "type": "integer",
+            "description": "Tenor",
+            "format": "int32"
+          },
+          "interestRate": {
+            "type": "number",
+            "description": "Interest Rate"
+          },
+          "installmentAmount": {
+            "type": "number",
+            "description": "Installment Amount"
+          },
+          "insuranceFee": {
+            "type": "number",
+            "description": "Insurance Fee"
+          },
+          "provisionFee": {
+            "type": "number",
+            "description": "Provision Fee"
+          },
+          "adminFee": {
+            "type": "number",
+            "description": "Admin Fee"
+          },
+          "totalFee": {
+            "type": "number",
+            "description": "Total Fee"
+          },
+          "totalAmount": {
+            "type": "number",
+            "description": "Total Amount"
+          },
+          "applicationStatus": {
+            "type": "string",
+            "description": "Application Status"
+          },
+          "personalInformation": {
+            "$ref": "#/components/schemas/PersonalInformation"
+          },
+          "currentAddress": {
+            "$ref": "#/components/schemas/CurrentAddress"
+          },
+          "currentWorkplace": {
+            "$ref": "#/components/schemas/CurrentWorkplace"
+          },
+          "jobInformation": {
+            "$ref": "#/components/schemas/JobInformation"
+          },
+          "financialInformation": {
+            "$ref": "#/components/schemas/FinancialInformation"
+          },
+          "emergencyContact": {
+            "$ref": "#/components/schemas/EmergencyContact"
+          },
+          "dukcapilInformation": {
+            "$ref": "#/components/schemas/DukcapilInformation"
+          }
+        },
+        "description": "Get Application Id"
+      },
+      "GetApplicationOffersResponse": {
+        "type": "object",
+        "properties": {
+          "productName": {
+            "type": "string",
+            "description": "Product Name"
+          },
+          "initialSubmission": {
+            "$ref": "#/components/schemas/InitialSubmission"
+          },
+          "offers": {
+            "type": "array",
+            "description": "Offer List",
+            "items": {
+              "$ref": "#/components/schemas/Offer"
+            }
+          }
+        },
+        "description": "GetApplicationOffers"
+      },
+      "InitialSubmission": {
+        "type": "object",
+        "properties": {
+          "salaryDay": {
+            "type": "string"
+          },
+          "tenor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "loanAmount": {
+            "type": "number"
+          },
+          "installmentAmount": {
+            "type": "number"
+          },
+          "interestRate": {
+            "type": "number"
+          },
+          "totalFee": {
+            "type": "number"
+          },
+          "insuranceFee": {
+            "type": "number"
+          },
+          "accumulatedFee": {
+            "type": "number"
+          },
+          "provisionFee": {
+            "type": "number"
+          },
+          "administrationFee": {
+            "type": "number"
+          },
+          "currencyCode": {
+            "type": "string"
+          }
+        },
+        "description": "Initial Submission"
+      },
+      "Offer": {
+        "type": "object",
+        "properties": {
+          "offerId": {
+            "type": "string"
+          },
+          "loanAmount": {
+            "type": "number"
+          },
+          "tenor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "interestRate": {
+            "type": "number"
+          },
+          "totalFee": {
+            "type": "number"
+          },
+          "provisionFee": {
+            "type": "number"
+          },
+          "administrationFee": {
+            "type": "number"
+          },
+          "insuranceFee": {
+            "type": "number"
+          },
+          "accumulatedFee": {
+            "type": "number"
+          },
+          "installmentAmount": {
+            "type": "number"
+          },
+          "currencyCode": {
+            "type": "string"
+          }
+        },
+        "description": "Offer List"
+      },
+      "GetLoanApplicationAgreementResponse": {
+        "type": "object",
+        "properties": {
+          "documentContent": {
+            "type": "string"
+          },
+          "cif": {
+            "type": "string"
+          },
+          "customerName": {
+            "type": "string"
+          },
+          "loanProductId": {
+            "type": "string"
+          },
+          "loanProductName": {
+            "type": "string"
+          },
+          "losApplicationId": {
+            "type": "string"
+          },
+          "documentType": {
+            "type": "string"
+          },
+          "documentCode": {
+            "type": "string"
+          },
+          "documentName": {
+            "type": "string"
+          },
+          "documentRepository": {
+            "type": "string"
+          },
+          "documentCabinet": {
+            "type": "string"
+          },
+          "documentObjectType": {
+            "type": "string"
+          }
+        }
+      },
+      "GetLoanAccountsResponse": {
+        "type": "object",
+        "properties": {
+          "loans": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Loans"
+            }
+          }
+        }
+      },
+      "Loans": {
+        "type": "object",
+        "properties": {
+          "loanAccountNumber": {
+            "type": "string"
+          },
+          "productType": {
+            "type": "string"
+          },
+          "accountOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dueDate": {
+            "type": "string"
+          },
+          "loanStatus": {
+            "type": "string"
+          },
+          "daysBeforeReminder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currencyType": {
+            "type": "string"
+          },
+          "isRevolving": {
+            "type": "boolean"
+          }
+        }
+      },
+      "GetAccountsCachedResponse": {
+        "type": "object",
+        "properties": {
+          "loanAccountNumber": {
+            "type": "string"
+          },
+          "productType": {
+            "type": "string"
+          },
+          "accountOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "loanStatus": {
+            "type": "string"
+          },
+          "daysBeforeReminder": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "currencyType": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
